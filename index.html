@@ -1,0 +1,112 @@
+<style>
+    .body {
+        margin: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .answer {
+        display: flex;
+        height: 600px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arrow-left {
+        border-left: 0.1rem solid green;
+        border-bottom: 0.1rem solid green;
+        width: 2rem;
+        height: 2rem;
+        transform: rotate(45deg);
+    }
+
+    .arrow-right {
+        animation: blink 1.8s infinite;
+        border-left: 0.1rem solid red;
+        border-bottom: 0.1rem solid red;
+        width: 2rem;
+        height: 2rem;
+        transform: rotate(225deg);
+    }
+
+    .call {
+        height: 100px;
+        width: 100px;
+        align-items: center;
+    }
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+
+
+    @keyframes blink {
+        50% {
+            border: black;
+        }
+    }
+
+    .arrow-left {
+        animation: blink 1.8s infinite;
+    }
+</style>
+<div class="answer">
+    <span class="arrow-left"></span>
+    <span class="arrow-left"></span>
+    <span class="arrow-left"></span>
+    <span class="arrow-left"></span>
+    <div class="call"><img src="file:///C:/Users/mkosi/Desktop/Site/img/arrow.png" alt=""></div>
+    <span class="arrow-right"></span>
+    <span class="arrow-right"></span>
+    <span class="arrow-right"></span>
+    <span class="arrow-right"></span>
+</div>
+<script>
+    var container = document.getElementsByClassName('answer');
+
+    document.addEventListener('touchstart', startTouch, { passive: false });
+    document.addEventListener("touchmove", moveTouch, { passive: false });
+
+    // Swipe Up / Down / Left / Right
+    var initialX = null;
+    var initialY = null;
+
+    function startTouch(e) {
+        initialX = e.touches[0].clientX;
+        initialY = e.touches[0].clientY;
+    };
+
+    function moveTouch(e) {
+        if (initialX === null) {
+            return;
+        }
+
+        if (initialY === null) {
+            return;
+        }
+
+        var currentX = e.touches[0].clientX;
+        var currentY = e.touches[0].clientY;
+
+        var diffX = initialX - currentX;
+        var diffY = initialY - currentY;
+
+
+        if (diffX > 0) {
+            // swiped left
+            console.log("swiped left");
+            window.location.assign("/callAnswewred.html");
+        } else {
+            // swiped right
+            console.log("swiped right");
+            window.location.assign("/callRejected.html");
+        }
+
+        initialX = null;
+        initialY = null;
+
+        e.preventDefault();
+    };
+</script>
