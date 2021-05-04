@@ -14,6 +14,31 @@
     }
 
     .arrow-left {
+        animation: blink 0.94s infinite;
+        border-left: 0.1rem solid green;
+        border-bottom: 0.1rem solid green;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(45deg);
+    }
+    .arrow-left1 {
+        animation: blink 0.93s infinite;
+        border-left: 0.1rem solid green;
+        border-bottom: 0.1rem solid green;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(45deg);
+    }
+    .arrow-left2 {
+        animation: blink 0.92s infinite;
+        border-left: 0.1rem solid green;
+        border-bottom: 0.1rem solid green;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(45deg);
+    }
+    .arrow-left3 {
+        animation: blink 0.91s infinite;
         border-left: 0.1rem solid green;
         border-bottom: 0.1rem solid green;
         width: 5rem;
@@ -21,8 +46,33 @@
         transform: rotate(45deg);
     }
 
+
     .arrow-right {
-        animation: blink 1.8s infinite;
+        animation: blink 0.91s infinite;
+        border-left: 0.1rem solid red;
+        border-bottom: 0.1rem solid red;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(225deg);
+    }
+    .arrow-right1 {
+        animation: blink 0.92s infinite;
+        border-left: 0.1rem solid red;
+        border-bottom: 0.1rem solid red;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(225deg);
+    }
+    .arrow-right2 {
+        animation: blink 0.93s infinite;
+        border-left: 0.1rem solid red;
+        border-bottom: 0.1rem solid red;
+        width: 5rem;
+        height: 5rem;
+        transform: rotate(225deg);
+    }
+    .arrow-right3 {
+        animation: blink 0.94s infinite;
         border-left: 0.1rem solid red;
         border-bottom: 0.1rem solid red;
         width: 5rem;
@@ -44,25 +94,19 @@
 
 
     @keyframes blink {
-        50% {
-            border: black;
-        }
-    }
-
-    .arrow-left {
-        animation: blink 1.8s infinite;
+        50%  {border: transparent;}
     }
 </style>
 <div class="answer">
     <span class="arrow-left"></span>
-    <span class="arrow-left"></span>
-    <span class="arrow-left"></span>
-    <span class="arrow-left"></span>
+    <span class="arrow-left1"></span>
+    <span class="arrow-left2"></span>
+    <span class="arrow-left3"></span>
     <div class="call">Call</div>
     <span class="arrow-right"></span>
-    <span class="arrow-right"></span>
-    <span class="arrow-right"></span>
-    <span class="arrow-right"></span>
+    <span class="arrow-right1"></span>
+    <span class="arrow-right2"></span>
+    <span class="arrow-right3"></span>
 </div>
 <script>
     var container = document.getElementsByClassName('answer');
@@ -95,14 +139,16 @@
         var diffY = initialY - currentY;
 
 
-        if (diffX > 0) {
+        if (diffX > 0 && currentX < 450 && initialX < 600) {
             // swiped left
             console.log("swiped left");
-            window.location.assign("/callAnswewred.html");
-        } else {
+            console.log(initialX);
+            console.log(currentX);
+        } else if(diffX < 0 && currentX < 1000 && initialX > 550) {
             // swiped right
             console.log("swiped right");
-            window.location.assign("/callRejected.html");
+            console.log(initialX);
+            console.log(currentX);
         }
 
         initialX = null;
