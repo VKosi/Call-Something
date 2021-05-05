@@ -84,7 +84,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: transparent;
+        background-color: white;
         width: 150px;
         height: 150px;
         position: relative;
@@ -92,9 +92,46 @@
         border-radius: 50%;
     }
 
+    #cally {
+        display: none;
+        z-index: -1;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        background-color: green;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    #cally{
+        animation: scaling .5s linear;
+    }
+
+    #cally1 {
+        display: none;
+        z-index: -1;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        background-color: red;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    #cally1 {
+        animation: scaling .5s linear;
+    }
 
     @keyframes blink {
         50%  {border: transparent;}
+    }
+
+    @keyframes scaling {
+        0%  {transform: scale(1);}
+        100%  {transform: scale(2);
+        opacity: .3;}
     }
 </style>
 <div class="answer">
@@ -102,7 +139,7 @@
     <span class="arrow-left1"></span>
     <span class="arrow-left2"></span>
     <span class="arrow-left3"></span>
-    <div class="call">Call</div>
+    <div class="call">Call<div id="cally"></div><div id="cally1"></div></div>
     <span class="arrow-right"></span>
     <span class="arrow-right1"></span>
     <span class="arrow-right2"></span>
@@ -111,8 +148,11 @@
 <script>
     var container = document.getElementsByClassName('answer');
 
+    let answery = document.getElementById('cally');
+    let reject = document.getElementById('cally1');
+
     document.addEventListener('touchstart', startTouch, { passive: false });
-    document.addEventListener("touchmove", moveTouch, { passive: false });
+    document.addEventListener('touchmove', moveTouch, { passive: false });
 
     // Swipe Up / Down / Left / Right
     var initialX = null;
@@ -139,13 +179,15 @@
         var diffY = initialY - currentY;
 
 
-        if (diffX > 0 && currentX < 450 && initialX < 600) {
+        if (currentX < (window.innerWidth * 0.4) && diffX > 30) {
             // swiped left
+            answery.style.display = 'flex';
             console.log("swiped left");
             console.log(initialX);
             console.log(currentX);
-        } else if(diffX < 0 && currentX < 1000 && initialX > 550) {
+        } else if(currentX > (window.innerWidth * 0.6) && diffX < -30) {
             // swiped right
+            reject.style.display = 'flex';
             console.log("swiped right");
             console.log(initialX);
             console.log(currentX);
