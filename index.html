@@ -14,36 +14,36 @@
     }
 
     .arrowLeft1 {
-        animation: blink 0.94s infinite;
-        border-left: 0.1rem solid green;
-        border-bottom: 0.1rem solid green;
+        animation: mymove2 2.98s infinite;
+        border-left: 0.1rem solid rgb(175, 252, 175);
+        border-bottom: 0.1rem solid rgb(175, 252, 175);
         width: 5rem;
         height: 5rem;
         transform: rotate(45deg);
     }
 
     .arrowLeft2 {
-        animation: blink 0.93s infinite;
-        border-left: 0.1rem solid green;
-        border-bottom: 0.1rem solid green;
+        animation: mymove2 2.96s infinite;
+        border-left: 0.1rem solid rgb(175, 252, 175);
+        border-bottom: 0.1rem solid rgb(175, 252, 175);
         width: 5rem;
         height: 5rem;
         transform: rotate(45deg);
     }
 
     .arrowLeft3 {
-        animation: blink 0.92s infinite;
-        border-left: 0.1rem solid green;
-        border-bottom: 0.1rem solid green;
+        animation: mymove2 2.94s infinite;
+        border-left: 0.1rem solid rgb(175, 252, 175);
+        border-bottom: 0.1rem solid rgb(175, 252, 175);
         width: 5rem;
         height: 5rem;
         transform: rotate(45deg);
     }
 
     .arrowLeft4 {
-        animation: blink 0.91s infinite;
-        border-left: 0.1rem solid green;
-        border-bottom: 0.1rem solid green;
+        animation: mymove2 2.92s infinite;
+        border-left: 0.1rem solid rgb(175, 252, 175);
+        border-bottom: 0.1rem solid rgb(175, 252, 175);
         width: 5rem;
         height: 5rem;
         transform: rotate(45deg);
@@ -51,36 +51,34 @@
 
 
     .arrowRight1 {
-        animation: blink 0.91s infinite;
-        border-left: 0.1rem solid red;
-        border-bottom: 0.1rem solid red;
+        animation: mymove 2.92s infinite;
         width: 5rem;
         height: 5rem;
         transform: rotate(225deg);
     }
 
     .arrowRight2 {
-        animation: blink 0.92s infinite;
-        border-left: 0.1rem solid red;
-        border-bottom: 0.1rem solid red;
+        animation: mymove 2.94s infinite;
+        border-left: 0.15rem solid red;
+        border-bottom: 0.15rem solid red;
         width: 5rem;
         height: 5rem;
         transform: rotate(225deg);
     }
 
     .arrowRight3 {
-        animation: blink 0.93s infinite;
-        border-left: 0.1rem solid red;
-        border-bottom: 0.1rem solid red;
+        animation: mymove 2.96s infinite;
+        border-left: 0.15rem solid red;
+        border-bottom: 0.15rem solid red;
         width: 5rem;
         height: 5rem;
         transform: rotate(225deg);
     }
 
     .arrowRight4 {
-        animation: blink 0.94s infinite;
-        border-left: 0.1rem solid red;
-        border-bottom: 0.1rem solid red;
+        animation: mymove 2.98s infinite;
+        border-left: 0.15rem solid red;
+        border-bottom: 0.15rem solid red;
         width: 5rem;
         height: 5rem;
         transform: rotate(225deg);
@@ -144,6 +142,20 @@
         50% {
             border: transparent;
         }
+    }
+
+    @keyframes mymove {
+        from{border-left: 0.15rem solid rgb(241, 41, 41);
+        border-bottom: 0.15rem solid rgb(243, 43, 43);}
+        to {border-left: 0.15rem solid black;
+        border-bottom: 0.15rem solid black;}
+    }
+
+    @keyframes mymove2 {
+        from{border-left: 0.15rem solid rgb(126, 245, 126);
+        border-bottom: 0.15rem solid rgb(128, 255, 128);}
+        to {border-left: 0.15rem solid black;
+        border-bottom: 0.15rem solid black;}
     }
 
     @keyframes scaling {
