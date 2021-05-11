@@ -84,13 +84,13 @@
         transform: rotate(225deg);
     }
 
-    .callLogo {
+    #callLogo {
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: white;
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         position: relative;
         border-radius: 50%;
     }
@@ -138,6 +138,15 @@
         animation: scaling .5s linear;
     }
 
+    #callimg :hover {
+        transform: scale(1.33);
+        transition: 1s;
+    }
+
+    #callimg {
+        transition: 1s;
+    }
+
     @keyframes blink {
         50% {
             border: transparent;
@@ -145,17 +154,27 @@
     }
 
     @keyframes mymove {
-        from{border-left: 0.15rem solid rgb(241, 41, 41);
-        border-bottom: 0.15rem solid rgb(243, 43, 43);}
-        to {border-left: 0.15rem solid black;
-        border-bottom: 0.15rem solid black;}
+        from {
+            border-left: 0.15rem solid rgb(255, 7, 58);
+            border-bottom: 0.15rem solid rgb(255, 7, 58);
+        }
+
+        to {
+            border-left: 0.15rem solid black;
+            border-bottom: 0.15rem solid black;
+        }
     }
 
     @keyframes mymove2 {
-        from{border-left: 0.15rem solid rgb(126, 245, 126);
-        border-bottom: 0.15rem solid rgb(128, 255, 128);}
-        to {border-left: 0.15rem solid black;
-        border-bottom: 0.15rem solid black;}
+        from {
+            border-left: 0.15rem solid rgb(57, 255, 20);
+            border-bottom: 0.15rem solid rgb(57, 255, 20);
+        }
+
+        to {
+            border-left: 0.15rem solid black;
+            border-bottom: 0.15rem solid black;
+        }
     }
 
     @keyframes scaling {
@@ -168,13 +187,23 @@
             opacity: .3;
         }
     }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
 </style>
 <div id="incomingCall">
     <span class="arrowLeft1"></span>
     <span class="arrowLeft2"></span>
     <span class="arrowLeft3"></span>
     <span class="arrowLeft4"></span>
-    <div class="callLogo"><img src="img/call3.png" height="150" width="150" />
+    <div id="callLogo"><img id="callimg" src="img/call3.png" height="150" width="150" />
         <div id="callAnswer"></div>
         <div id="callReject"></div>
     </div>
@@ -185,49 +214,73 @@
 </div>
 <script>
     let answery = document.getElementById('callAnswer');
-let reject = document.getElementById('callReject');
+    let reject = document.getElementById('callReject');
+    let img = document.getElementById('callimg');
 
-document.getElementById("incomingCall")
-    .addEventListener('touchstart', startTouch, {
-    passive: false});
+    document.getElementById("incomingCall")
+        .addEventListener('touchstart', startTouch, {
+            passive: false
+        });
 
-document.getElementById("incomingCall")
-    .addEventListener('touchmove', moveTouch, {
-    passive: false});
+    document.getElementById("incomingCall")
+        .addEventListener('touchmove', moveTouch, {
+            passive: false
+        });
 
-// Swipe Up / Down / Left / Right
-var initialX = null;
+    window.addEventListener('touchmove', moveTouch, {
+        passive: false
+    });
 
-function startTouch(e) {
-    initialX = e.touches[0].clientX;
-    initialY = e.touches[0].clientY;
-}
+    // Swipe Up / Down / Left / Right
+    var initialX = null;
 
-;
+    function startTouch(e) {
+        initialX = e.touches[0].clientX;
+        initialY = e.touches[0].clientY;
 
-function moveTouch(e) {
-    if(initialX === null) {
-        return;
+        if (initialX !== null) {
+            window.addEventListener('touchstart', function () {
+                img.style.transform = 'scale(1.33)';
+                img.style.transition = '1s';
+            });
+        }
     }
+    img.style.transition = '1s';
 
-    if(initialY === null) {
-        return;
-    }
+    ;
 
-    var currentX = e.touches[0].clientX;
-    var currentY = e.touches[0].clientY;
+    function moveTouch(e) {
+        if (initialX === null) {
+            return;
+        }
 
-    var diffX = initialX - currentX;
-    var diffY = initialY - currentY;
+        if (initialY === null) {
+            return;
+        }
+
+        var currentX = e.touches[0].clientX;
+        var currentY = e.touches[0].clientY;
+
+        var diffX = initialX - currentX;
+        var diffY = initialY - currentY;
 
 
-    if(currentX < (window.innerWidth * 0.4) && diffX > 30) {
-        answery.style.display = 'flex';
-    } else if(currentX > (window.innerWidth * 0.6) && diffX < -30) {
-        reject.style.display = 'flex';
-    }
-    initialX = null;
-    initialY = null;
-    e.preventDefault();
-};
+        if (currentX < (window.innerWidth * 0.45) && diffX > 30) {
+            answery.style.display = 'flex';
+            img.style.transform = 'translate(-200px)';
+            img.style.transition = '1s';
+            img.style.animation = 'fadeOut ease 2s';
+            img.style.opacity = '0';
+        } else if (currentX > (window.innerWidth * 0.55) && diffX < -30) {
+            reject.style.display = 'flex';
+            img.style.transform = 'translate(200px)';
+            img.style.transition = '1s';
+            img.style.animation = 'fadeOut ease 2s';
+            img.style.opacity = '0';
+        }
+
+        initialX = null;
+        initialY = null;
+        e.preventDefault();
+    };
 </script>
