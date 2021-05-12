@@ -200,12 +200,12 @@
         }
 
         100% {
-            transform: scale(4);
+            transform: scale(6);
             opacity: .9;
         }
-        100%{opacity: .8;}
         100%{opacity: .7;}
         100%{opacity: .6;}
+        100%{opacity: .5;}
     }
 
     @keyframes fadeOut {
@@ -258,7 +258,12 @@
 
     window.addEventListener('touchstart', function () {
         img.style.transform = 'scale(1.33)';
-        img.style.transition = '1s';
+        img.style.transition = '1s ';
+    });
+    
+    document.getElementById("callCard").addEventListener('touchend', function () {
+        img.style.transform = 'scale(1)';
+        img.style.transition = '2s ,1s';
     });
 
     // Swipe Up / Down / Left / Right
@@ -292,13 +297,17 @@
             answery.style.display = 'flex';
             img.style.transform = `translate(${-value}px)`;
             img.style.transition = '1s';
-            answery.style.display = 'fadeOut ease 4s';
+            img.style.animation = 'fadeOut ease 1.5s';
+            img.style.opacity = '0';
+            answery.style.display = 'fadeOut ease 1.5s';
             answery.style.opacity = '0';
         } else if (currentX > (window.innerWidth * 0.55) && diffX < -30) {
             reject.style.display = 'flex';
             img.style.transform = `translate(${value}px)`;
             img.style.transition = '1s';
-            reject.style.display = 'fadeOut ease 4s';
+            img.style.animation = 'fadeOut ease 1.5s';
+            img.style.opacity = '0';
+            reject.style.display = 'fadeOut ease 1.5s';
             reject.style.opacity = '0';
         }
         
