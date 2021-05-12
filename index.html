@@ -6,7 +6,7 @@
         align-items: center;
     }
 
-    #callCard{
+    #callCard {
         height: 55%;
         display: flex;
         flex-direction: column;
@@ -14,15 +14,15 @@
         justify-content: center;
     }
 
-    #callCard #profile{
+    #callCard #profile {
         border-radius: 50%;
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-size:5vh;
+        font-size: 5vh;
     }
 
-    #span{
+    #span {
         font-size: 250%;
         margin: 100px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -109,6 +109,7 @@
 
     #callLogo {
         display: flex;
+        z-index: -3;
         justify-content: center;
         align-items: center;
         background-color: white;
@@ -131,7 +132,6 @@
 
     #callAnswer {
         display: none;
-        z-index: -1;
         position: absolute;
         justify-content: center;
         align-items: center;
@@ -142,12 +142,11 @@
     }
 
     #callAnswer {
-        animation: scaling .5s linear;
+        animation: scaling .7s linear;
     }
 
     #callReject {
         display: none;
-        z-index: -1;
         position: absolute;
         justify-content: center;
         align-items: center;
@@ -158,7 +157,7 @@
     }
 
     #callReject {
-        animation: scaling .5s linear;
+        animation: scaling .7s linear;
     }
 
     #callimg {
@@ -201,9 +200,12 @@
         }
 
         100% {
-            transform: scale(2);
-            opacity: .3;
+            transform: scale(4);
+            opacity: .9;
         }
+        100%{opacity: .8;}
+        100%{opacity: .7;}
+        100%{opacity: .6;}
     }
 
     @keyframes fadeOut {
@@ -217,7 +219,7 @@
     }
 </style>
 <div id="callCard">
-    <img id="profile" src="img/Line Manager.jpg" alt="" height="400" width="400">
+    <img id="profile" src="img/Line Manager2.jpg" alt="" height="400" width="400">
     <span id="span">Line Manager</span>
 </div>
 <div id="incomingCall">
@@ -238,6 +240,7 @@
     let answery = document.getElementById('callAnswer');
     let reject = document.getElementById('callReject');
     let img = document.getElementById('callimg');
+    let length = window.innerWidth;
 
     document.getElementById("incomingCall")
         .addEventListener('touchstart', startTouch, {
@@ -253,23 +256,18 @@
         passive: false
     });
 
+    window.addEventListener('touchstart', function () {
+        img.style.transform = 'scale(1.33)';
+        img.style.transition = '1s';
+    });
+
     // Swipe Up / Down / Left / Right
     var initialX = null;
 
     function startTouch(e) {
         initialX = e.touches[0].clientX;
         initialY = e.touches[0].clientY;
-
-        if (initialX !== null) {
-            window.addEventListener('touchstart', function () {
-                img.style.transform = 'scale(1.33)';
-                img.style.transition = '1s';
-                console.log(initialX);
-            });
-        }
-        img.style.transition = '1s';
     }
-    img.style.transition = '1s';
 
     ;
 
@@ -288,21 +286,22 @@
         var diffX = initialX - currentX;
         var diffY = initialY - currentY;
 
+        var value = window.innerWidth * 0.33;        
 
         if (currentX < (window.innerWidth * 0.45) && diffX > 30) {
             answery.style.display = 'flex';
-            img.style.transform = 'translate(-200px)';
+            img.style.transform = `translate(${-value}px)`;
             img.style.transition = '1s';
-            img.style.animation = 'fadeOut ease 2s';
-            img.style.opacity = '0';
+            answery.style.display = 'fadeOut ease 4s';
+            answery.style.opacity = '0';
         } else if (currentX > (window.innerWidth * 0.55) && diffX < -30) {
             reject.style.display = 'flex';
-            img.style.transform = 'translate(200px)';
+            img.style.transform = `translate(${value}px)`;
             img.style.transition = '1s';
-            img.style.animation = 'fadeOut ease 2s';
-            img.style.opacity = '0';
+            reject.style.display = 'fadeOut ease 4s';
+            reject.style.opacity = '0';
         }
-
+        
         initialX = null;
         initialY = null;
         e.preventDefault();
