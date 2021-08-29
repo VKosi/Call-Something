@@ -1,0 +1,95 @@
+<style type="text/css">
+        .callerImageContainer{
+            padding-top: calc(4 * var(--unit));
+            text-align: center;
+        }
+        .callerImg{
+            border-radius: 50%;
+            height:calc(50 * var(--unit));
+            width: calc(50 * var(--unit));
+        }
+        .callLogo{
+            height: calc(12 * var(--unit));
+            width: calc(12 * var(--unit));
+            z-index: 1;
+            position: relative;
+            animation-name: swipeLeftRightIndicator;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+        .callLogoContainer{
+            width: calc(12 * var(--unit));
+            position: relative;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: calc(4 * var(--unit));
+            padding-right: calc(4 * var( --unit));
+        }
+        .arrowRight {
+            animation: rightSwipeAnimation 1s infinite;
+            border-left: calc(.5 * var(--unit)) solid var(--HIGHLIGHT);
+            border-bottom: calc(.5 * var(--unit))solid var(--HIGHLIGHT);
+            width: 30px;
+            height: 30px;
+            transform: rotate(225deg);
+        }
+        .arrowLeft{
+            animation: leftSwipeAnimation 1s infinite;
+            border-left: calc(.5 * var(--unit)) solid var(--PRIMARY);
+            border-bottom: calc(.5 * var(--unit)) solid var(--PRIMARY);
+            width: 30px;
+            height: 30px;
+            transform: rotate(45deg);
+        }
+        @keyframes rightSwipeAnimation {
+            from {
+                border-left: calc(1 * var(--unit)) solid var(--NEGATIVE_BALANCE_AMBER);
+                border-bottom: calc(1 * var(--unit)) solid var(--NEGATIVE_BALANCE_AMBER);
+            }
+            to {
+                border-left:calc(1 * var(--unit)) solid var(--INK);
+                border-bottom: calc(1 * var(--unit)) solid var(--INK);
+            }
+        }
+        @keyframes leftSwipeAnimation {
+            from {
+                border-left: calc(1 * var(--unit)) solid var(--ASSET_CMP);
+                border-bottom: calc(1 * var(--unit))solid var(--ASSET_CMP);
+            }
+            to {
+                border-left: calc(1 * var(--unit)) solid var(--INK);
+                border-bottom:calc(1 * var(--unit)) solid var(--INK);
+            }
+        }
+        @keyframes swipeLeftRightIndicator  {
+            0%   {left:0px; top:0px;}
+            25%  {left:10px; top:0px;}
+            50%  {left: 0px; top:0px;}
+            75%  {left:-10px; top:0px;}
+            100%  {left:0px; top:0px;}
+        }
+    </style>
+    <div class="callerImageContainer">
+        <img class="callerImg" src="/banking/fstatic/images_flat/fnb/phone/mobi/voip.thumbnail.individual.icon.mdpi.png" alt="Avatar">
+            <%-- <img class="callerImg"  xlink:href="<x:fstatic resource='#ui.callUserDisplay.iconId' ext='png' />">--%>
+        <br><br>
+        <h1><s:property value="#ui.callUserDisplay.label"/></h1>
+        <h1 id="eventLabel"></h1>
+        <br><br><br><br>
+        <div class="row">
+            <span class="arrowLeft"></span>
+            <span class="arrowLeft"></span>
+            <span class="arrowLeft"></span>
+            <span class="arrowLeft"></span>
+            <div class="callLogoContainer" id="callLogoContainer">
+                <img class="callLogo" id="callLogo" src="https://www.nicepng.com/png/full/11-116665_free-icons-png-telephone-icon-png.png" />
+            </div>
+            <span class="arrowRight"></span>
+            <span class="arrowRight"></span>
+            <span class="arrowRight"></span>
+            <span class="arrowRight"></span>
+        </div>
+    </div>
